@@ -39,6 +39,9 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
                     <Label col="0" text="&#xf013;" class="fa"></Label>
                     <Label col="1" text="Settings" class="p-r-10"></Label>
                 </GridLayout>
+                <GridLayout columns="auto, *" class="sidedrawer-list-item" (tap)="logout()">
+                    <Button class="btn btn-primary w-full" text="Log Out" (tap)="logout()"></Button>
+                </GridLayout>
             </StackLayout>
         </ScrollView>
     </GridLayout>

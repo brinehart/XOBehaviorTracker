@@ -2,9 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
-import { filter } from "rxjs/operators";
+import { filter, timestamp } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
-const firebase = require("nativescript-plugin-firebase");
+import { UserService } from "./services/users/user.service";
+var firebase = require("nativescript-plugin-firebase");
 
 @Component({
     moduleId: module.id,
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(private router: Router, private routerExtensions: RouterExtensions, private userService: UserService) {
         // Use the component constructor to inject services.
     }
     ngOnInit(): void {
@@ -25,14 +26,6 @@ export class AppComponent implements OnInit {
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
-
-        firebase.init({
-            iOSEmulatorFlush: true
-        }).then(() => {
-            console.log("firebase.init done");
-        }), (error: any) => {
-            console.log(`firebase.init error ${error}`)
-        }
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -50,6 +43,17 @@ export class AppComponent implements OnInit {
             }
         });
 
+        const sideDrawer = <RadSideDrawer>app.getRootView();
+        sideDrawer.closeDrawer();
+    }
+
+    async logout() {
+        await this.userService.logout();
+        this.routerExtensions.navigate(["/login"], {
+            transition: {
+                name: "fade"
+            }
+        });
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.closeDrawer();
     }

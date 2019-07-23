@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from './user.model';
 import * as appSettings from "tns-core-modules/application-settings";
 import { format, parse, differenceInCalendarISOWeeks } from 'date-fns';
+import { SnackBar } from 'nativescript-snackbar';
 
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
 var applicationSettings = require("application-settings");
@@ -13,6 +14,7 @@ var applicationSettings = require("application-settings");
 export class UserService {
   private userSource = new BehaviorSubject<User>(new User());
   currentUser = this.userSource.asObservable();
+
   errors: string[];
 
   constructor() { 
@@ -42,21 +44,30 @@ export class UserService {
   async login(email: string, password: string) {
     this.errors = [];
     await firebaseWebApi.auth().signInWithEmailAndPassword(email, password).then((result) => {
+      appSettings.setString("XO_LoginErrors", "");
       this.setCurrentUser(result.user, false);
     }).catch(function (error) {
-      this.errors.push(`${error.message} - Code: ${error.code}`);
+      appSettings.setString("XO_LoginErrors", error.message);
     });
   }
 
   async register(email: string, password: string) {
     this.errors = [];
     await firebaseWebApi.auth().createUserWithEmailAndPassword(email, password).then(result => {
+      appSettings.setString("XO_LoginErrors", "");
       this.setCurrentUser(result.user, true);
       result.user.sendEmailVerification();
       this.setUserIsPaid(result.user.uid, false);
     }).catch(function (error) {
-      this.errors.push(`${error.message} - Code: ${error.code}`);
+      appSettings.setString("XO_LoginErrors", error);
     });
+  }
+
+  async resetPassword(email: any) {
+    await firebaseWebApi.auth().sendPasswordResetEmail(email)
+      .catch((error: any) => {
+        appSettings.setString("XO_LoginErrors", `Error sending password reset email: ${error}`);
+      })
   }
 
   setUserIsPaid(uid: string, paidStatus: boolean) {

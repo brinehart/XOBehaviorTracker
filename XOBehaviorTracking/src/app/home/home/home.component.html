@@ -1,0 +1,34 @@
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <GridLayout row="0" rows="*" columns="*, auto" padding="15">
+        <Image row="0" col="0"
+            src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d74712e9b31ac943d46541e6e6ed559f&auto=format&fit=crop&w=800&q=80"
+            class="profile-img-sm" shadow="3"></Image>
+        <Label row="0" col="1" [text]="child.name" class="title sf"></Label>
+    </GridLayout>
+    <ActionItem class="child-points" android:visibility="collapsed" ios.position="right"
+        text="{{ child.points}} points">
+    </ActionItem>
+</ActionBar>
+
+<FlexboxLayout class="page page-content">
+    <ScrollView orientation="vertical">
+        <StackLayout class="form" padding="15" width="100%" height="100%" visibility="visible" id="layoutStack"
+            horizontalAlignment="center" verticalAlignment="center" orientation="vertical">
+            <Image src="res://up" [ngClass]="oClass" height="200" (tap)="onOTap()"></Image>
+            <Image src="res://down" [ngClass]="xClass" height="200" (tap)="onXTap()"></Image>
+        </StackLayout>
+    </ScrollView>
+</FlexboxLayout>

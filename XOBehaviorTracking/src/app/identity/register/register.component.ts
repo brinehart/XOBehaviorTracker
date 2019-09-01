@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../services/users/user.service';
+import { UserService } from '../../services/users/user.service';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { SnackBar } from "nativescript-snackbar";
 import { registerElement } from 'nativescript-angular/element-registry';
 import * as appSettings from "tns-core-modules/application-settings";
 import { ShadowedLabel } from 'nativescript-shadowed-label';
 import { Page } from 'tns-core-modules/ui/page/page';
-import { User } from '../services/users/user.model';
+import { User } from '../../services/users/user.model';
 
 @Component({
   selector: 'ns-register',

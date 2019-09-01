@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { RouterExtensions } from 'nativescript-angular/router';
-import { UserService } from '../services/users/user.service';
+import { UserService } from '../../services/users/user.service';
 import { SnackBar } from 'nativescript-snackbar';
 import * as appSettings from "tns-core-modules/application-settings";
 

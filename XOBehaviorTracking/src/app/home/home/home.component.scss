@@ -8,21 +8,20 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
+ActionBar {
+    background-color: #f65946;
+}
 .page-content {    
-     background-color: #2a10c2;
+     background-color: #fff;
      animation-name: intro-background-intro;
-     animation-duration: 2;
+     animation-duration: 1;
      animation-fill-mode: forwards;
      animation-iteration-count: 1;
      animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
  }
  @keyframes intro-background-intro {
      0% {        
-         background-color: #2a10c2;
-     }
-     20%{
-         background-color: #2a10c2;
+         background-color: #000;
      }
      100% {
          background-color: white;
@@ -32,5 +31,5 @@
 ScrollView {
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to right, #ed6ea0 0%, #ec8c69 100%);
+  background-image: #fff;
 }

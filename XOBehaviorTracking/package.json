@@ -34,6 +34,7 @@
     "nativescript-shadowed-label": "^0.1.3",
     "nativescript-snackbar": "^4.1.2",
     "nativescript-sqlite": "^2.3.3",
+    "nativescript-svg": "^1.3.7",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-ui-sidedrawer": "7.0.0",
     "reflect-metadata": "~0.1.12",

@@ -5,6 +5,8 @@ import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nat
 import { filter, timestamp } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
 import { UserService } from "./services/users/user.service";
+import { UserChildService } from "./services/user-child/user-child.service";
+import { UserChild } from "./models/userChild.model";
 var firebase = require("nativescript-plugin-firebase");
 
 @Component({
@@ -15,8 +17,12 @@ var firebase = require("nativescript-plugin-firebase");
 export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
-
-    constructor(private router: Router, private routerExtensions: RouterExtensions, private userService: UserService) {
+    children: UserChild[];
+    constructor(
+        private router: Router, 
+        private routerExtensions: RouterExtensions, 
+        private userService: UserService, 
+        private childService: UserChildService) {
         // Use the component constructor to inject services.
     }
     ngOnInit(): void {
@@ -26,6 +32,8 @@ export class AppComponent implements OnInit {
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
+
+        this.children = this.childService.children;
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -36,7 +44,10 @@ export class AppComponent implements OnInit {
         return this._activatedUrl === url;
     }
 
-    onNavItemTap(navItemRoute: string): void {
+    onNavItemTap(navItemRoute: string, childUID: string): void {
+        if (childUID) {
+            this.childService.switchChildren(childUID);
+        }
         this.routerExtensions.navigate([navItemRoute], {
             transition: {
                 name: "fade"

@@ -5,6 +5,7 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home/home.component";
 import { BehaviorListSelectComponent } from "./behavior-list-select/behavior-list-select.component";
 import { ConfirmActionComponent } from "./confirm-action/confirm-action.component";
+import { ActionBarComponent } from './action-bar/action-bar.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { ConfirmActionComponent } from "./confirm-action/confirm-action.componen
     declarations: [
         HomeComponent,
         BehaviorListSelectComponent,
-        ConfirmActionComponent
+        ConfirmActionComponent,
+        ActionBarComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

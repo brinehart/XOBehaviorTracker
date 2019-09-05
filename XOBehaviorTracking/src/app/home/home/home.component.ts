@@ -6,6 +6,7 @@ import * as appSettings from 'tns-core-modules/application-settings';
 import { UserChild } from "../../models/userChild.model";
 import { ActionType } from "../../models/actionType.model";
 import { UserChildService } from "~/app/services/user-child/user-child.service";
+import { Observable } from "rxjs";
 
 @Component({
     selector: 'Home',
@@ -15,16 +16,14 @@ import { UserChildService } from "~/app/services/user-child/user-child.service";
 })
 export class HomeComponent implements OnInit {
     public selectedIndex = 1;
-    public child: UserChild;
     public xClass: string;
     public oClass: string;
 
-    constructor(private routerExtensions: RouterExtensions, private userChildService: UserChildService) {
+    constructor(private routerExtensions: RouterExtensions) {
     }
 
     ngOnInit(): void {
         // Init your component properties here.
-        this.child = this.userChildService.child;
     }
 
     onDrawerButtonTap(): void {

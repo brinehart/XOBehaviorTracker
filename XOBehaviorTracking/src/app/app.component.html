@@ -13,24 +13,9 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
     
         <ScrollView row="1" class="sidedrawer-content">
             <StackLayout>
-                <FlexBoxLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/home')" (tap)="onNavItemTap('/home')">
+                <FlexBoxLayout columns="auto, *" class="sidedrawer-list-item" *ngFor="let child of children" [class.selected]="isComponentSelected('/home')" (tap)="onNavItemTap('/home', child.uid)">
                     <Label col="0" text="&#xf015;" class="fa"></Label>
-                    <Label col="1" text="Home" class="p-r-10"></Label>
-                </FlexBoxLayout>
-
-                <FlexBoxLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/browse')" (tap)="onNavItemTap('/browse')">
-                    <Label col="0" text="&#xf1ea;" class="fa"></Label>
-                    <Label col="1" text="Browse" class="p-r-10"></Label>
-                </FlexBoxLayout>
-
-                <FlexBoxLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/search')" (tap)="onNavItemTap('/search')">
-                    <Label col="0" text="&#xf002;" class="fa"></Label>
-                    <Label col="1" text="Search" class="p-r-10"></Label>
-                </FlexBoxLayout>
-
-                <FlexBoxLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/featured')" (tap)="onNavItemTap('/featured')">
-                    <Label col="0" text="&#xf005;" class="fa"></Label>
-                    <Label col="1" text="Featured" class="p-r-10"></Label>
+                    <Label col="1" [text]="child.name" class="p-r-10"></Label>
                 </FlexBoxLayout>
     
                 <StackLayout class="hr-light"></StackLayout>
@@ -40,7 +25,8 @@ https://docs.nativescript.org/angular/ui/professional-ui-components/ng-SideDrawe
                     <Label col="1" text="Settings" class="p-r-10"></Label>
                 </FlexBoxLayout>
                 <FlexBoxLayout columns="auto, *" class="sidedrawer-list-item" (tap)="logout()">
-                    <Button class="btn btn-primary w-full" text="Log Out" (tap)="logout()"></Button>
+                    <Label col="0" text="&#f2f5;" class="fa"></Label>
+                    <Label col="1" text="Log Out" class="p-r-10" (tap)="logout()"></Label>
                 </FlexBoxLayout>
             </StackLayout>
         </ScrollView>

@@ -5,7 +5,7 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home/home.component";
 import { BehaviorListSelectComponent } from "./behavior-list-select/behavior-list-select.component";
 import { ConfirmActionComponent } from "./confirm-action/confirm-action.component";
-import { ActionBarComponent } from './action-bar/action-bar.component';
+import { HomeActionBarComponent } from './action-bar/action-bar.component';
 
 @NgModule({
     imports: [
@@ -16,7 +16,7 @@ import { ActionBarComponent } from './action-bar/action-bar.component';
         HomeComponent,
         BehaviorListSelectComponent,
         ConfirmActionComponent,
-        ActionBarComponent
+        HomeActionBarComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -12,7 +12,7 @@ import { UserChildService } from '~/app/services/user-child/user-child.service';
     styleUrls: ['./action-bar.component.scss'],
     moduleId: module.id
 })
-export class ActionBarComponent implements OnInit {
+export class HomeActionBarComponent implements OnInit {
 
     child$: Observable<UserChild>;
     constructor(private userChildService: UserChildService) {}

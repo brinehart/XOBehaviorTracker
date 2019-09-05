@@ -47,7 +47,9 @@ export class LoginComponent implements OnInit {
       if (this.returnURL.length > 0) {
         this.router.navigate([`${this.returnURL}`]);
       } else {
-        this.router.navigate(["/home"]);
+                this.router.navigate(["/home"], {
+                    clearHistory: true
+                });
       }
     }
     this.animationOn = false;
